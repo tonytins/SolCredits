@@ -3,8 +3,8 @@ extends Control
 const wallet_limit: float = 1000
 
 @export var starting_funds: float = 168
-## How many volts is generated per-cycle
-@export var volts_generated: float = 10
+## How many kilowatts is generated per-cycle
+@export var kilowatts: float = 10
 ## Starting battery capacity
 @export var battery_capacity: float = 500
 @export var budget_minimum: float = 300
@@ -20,7 +20,7 @@ var battery_percentage: float = 0
 var wallet: float = starting_funds
 var generating_energy: bool = true
 var earned_income:
-	get: return battery_capacity / volts_generated
+	get: return battery_capacity / kilowatts
 
 func _ready():
 	randomize()
@@ -38,7 +38,7 @@ func _process(delta):
 ## until battery reaches battery_capacity
 func generate_energy(delta):
 	if battery_percentage < battery_capacity:
-		battery_percentage += volts_generated * delta
+		battery_percentage += kilowatts * delta
 		if battery_percentage >= battery_capacity:
 			battery_percentage = battery_capacity
 			generating_energy = false

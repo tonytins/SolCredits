@@ -1,12 +1,12 @@
-# Origins
+# Algorithm
 
 The original implementation of Solar Credit's algorithm was my request to ChatGPT. Due to its complexity, it was beyond my understanding of how to actually write it. I've written algorithms before, but those were in C#. GDScript is still a little foreign to me.
 
-It took some trial and error to get it right. In fact, my original requests were to Bing Copilot, where I simply asked it to search GDScript documentation and use that to write a script that simulates energy demand and converts it into currency. However, it gave me links to it instead of using it as a reference. Regardless, the code did work.
-
-After requesting a few refactorings that involved storing the energy into a battery, which would be converted into money, I looked to ChatGPT. I requested what I wanted based on my experience with Bing Copilot, and it worked the first time. Below is the bot's code and explanation.
+It took some trial and error to get it right. In fact, my original requests were to Bing Copilot, where I simply asked it to search GDScript documentation and use that to write a script that simulates energy demand and converts it into currency. However, it gave me links to it instead of using it as a reference. Regardless, the code did work - rather clunky so. It kept dipping into the negatives.
 
 ## ChatGPT
+
+After requesting a few refactorings that involved storing the energy in a battery, which would be converted into money, and selling it after it reached a certain amount, I looked to ChatGPT. I requested what I wanted based on my experience with Bing Copilot, and it worked the first time! Below is the bot's code and explanation.
 
 ### Sample Code
 
