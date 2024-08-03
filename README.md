@@ -1,6 +1,8 @@
 # Solar Credits
 
-Made in Godot 4.x and inspired by Stellaris, Solar Credits explores the concept of earning money using renewable energy to earn Credits (**Ȼ**). This prototype is fairly simple in design. You own a simple household that has solar panels. Energy production temporarily stops once you reach 100%. You earn the sum of the total energy stored in your battery, which is consumed until it reaches a certain minimum threshold, and you resume producing energy again.
+<img src="screenshot.png" title="" alt="" data-align="center">
+
+Made in Godot 4.x and inspired by Stellaris, Solar Credits explores the concept of earning money using renewable energy to earn Credits (**Ȼ**). This prototype is fairly simple in design. You own a simple household that has solar panels. When your battery reaches 100%, energy production temporarily halts, and you earn the sum of the total energy stored. Then it begins depleting until a certain minimum threshold is reached, and the cycle repeats.
 
 In the future, I'll add a day-night cycle with the potential to improve reliability by buying batteries or panels to produce and store more. However, the core game loop is functional.
 

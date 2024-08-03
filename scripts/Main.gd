@@ -3,8 +3,8 @@ extends Control
 var battery_percentage: float = 0.0
 var wallet: int = 168
 var generating_energy: bool = true
-@onready var wallet_ui_val = $Wallet/WalletVal
-@onready var battery_ui_bar = $BatteryBar
+@onready var wallet_ui_val = $MenuBar/Wallet/WalletVal
+@onready var battery_ui_bar = $MenuBar/BatteryBar
 
 func _ready():
 	randomize()
