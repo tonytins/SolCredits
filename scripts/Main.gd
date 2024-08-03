@@ -3,8 +3,10 @@ extends Control
 var battery_percentage: float = 0.0
 var wallet: int = 168
 var generating_energy: bool = true
+@export var capacity = 500
 @onready var wallet_ui_val = $MenuBar/Wallet/WalletVal
 @onready var battery_ui_bar = $MenuBar/BatteryBar
+@onready var capacity_ui_val = $MenuBar/BatteryCap/BatCapVal
 
 func _ready():
 	randomize()
@@ -18,10 +20,10 @@ func _process(delta):
 	print_status()
 
 func generate_energy(delta):
-	if battery_percentage < 500.0:
+	if battery_percentage < capacity:
 		battery_percentage += 10.0 * delta
-		if battery_percentage >= 500.0:
-			battery_percentage = 500.0
+		if battery_percentage >= capacity:
+			battery_percentage = capacity
 			generating_energy = false
 			add_to_wallet()
 	else:
@@ -54,4 +56,5 @@ func check_wallet():
 func print_status():
 	wallet_ui_val.text = str(wallet)
 	battery_ui_bar.value = battery_percentage
+	capacity_ui_val.text = str(capacity)
 	# print("Battery: " + str(battery_percentage) + "%, Wallet: " + str(wallet) + " Credits")
