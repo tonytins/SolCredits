@@ -3,13 +3,13 @@ extends Control
 const wallet_limit: float = 1000
 
 @export var starting_funds: float = 168
-## How many kilowatts is generated per-cycle
-@export var kilowatts: float = 10
+## How many Kilowatt-Hour is generated per-cycle
+@export var kilowatt_hour: float = 10
 ## Starting battery capacity
 @export var battery_capacity: float = 500
 @export var budget_minimum: float = 300
 ## How low the battery gets before resuming production
-@export var battery_minimum: float = 150
+@export var consumption_threshold: float = 150
 @export var battery_consumption: float = 5
 
 @onready var wallet_ui_val = $MenuBar/Wallet/WalletVal
@@ -18,15 +18,14 @@ const wallet_limit: float = 1000
 
 var battery_percentage: float = 0
 var wallet: float = starting_funds
-var generating_energy: bool = true
-var earned_income:
-	get: return battery_capacity / kilowatts
+var is_generating_energy: bool = true
+var is_day_time: bool = true
 
 func _ready():
 	randomize()
 
 func _process(delta):
-	if generating_energy:
+	if is_generating_energy:
 		generate_energy(delta)
 	else:
 		consume_energy(delta)
@@ -38,28 +37,31 @@ func _process(delta):
 ## until battery reaches battery_capacity
 func generate_energy(delta):
 	if battery_percentage < battery_capacity:
-		battery_percentage += kilowatts * delta
+		battery_percentage += kilowatt_hour * delta
 		if battery_percentage >= battery_capacity:
 			battery_percentage = battery_capacity
-			generating_energy = false
+			is_generating_energy = false
 			add_to_wallet()
 	else:
-		generating_energy = false
+		is_generating_energy = false
 
 ## Battery consumes eneregy until
 func consume_energy(delta):
-	battery_percentage -= battery_consumption * delta
-	if battery_percentage <= battery_minimum:
-		battery_percentage = battery_minimum
-		generating_energy = true
+	battery_percentage -= battery_percentage * delta
+	if battery_percentage <= consumption_threshold:
+		battery_percentage = consumption_threshold
+		is_generating_energy = true
 
 func add_to_wallet():
-	wallet += earned_income
-	if wallet > wallet_limit:
-		wallet = wallet_limit
-	## Simulate spending
-	elif wallet > budget_minimum:
-		wallet -= sell_energy(wallet - 300)
+	# Calculate the amount of energy that can be sold as surplus
+	var surplus_energy = max(battery_percentage - consumption_threshold, 0)
+	# Convert surplus energy to credits
+	var earned_credits = int(surplus_energy * randf_range(0.2, 0.4))
+	wallet += earned_credits
+	print_debug("Earned Ȼ" + str(earned_credits))
+	# Ensure wallet does not exceed the limit
+	if wallet > 1000:
+		wallet = 1000
 
 ## Simulate selling the energy for credits
 func sell_energy(amount):

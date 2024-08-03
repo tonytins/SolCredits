@@ -8,7 +8,7 @@ It took some trial and error to get it right. In fact, my original requests were
 
 After requesting a few refactorings that involved storing the energy in a battery, which would be converted into money, and selling it after it reached a certain amount, I looked to ChatGPT. I requested what I wanted based on my experience with Bing Copilot, and it worked the first time! Below is the bot's code and explanation.
 
-### Sample Code
+### Original
 
 ```gdscript
 extends Node
@@ -66,7 +66,7 @@ func print_status():
     print("Battery: " + str(battery_percentage) + "%, Wallet: " + str(wallet) + " Credits")
 ```
 
-### Explanation
+#### Explanation
 
 1. **Variables**:
 
@@ -94,3 +94,35 @@ func print_status():
    - The `sell_energy` function is a placeholder to simulate selling excess energy.
 
 This code will print the battery percentage and wallet amount to the console every frame, simulating the energy management system you've described. The logic ensures that variables never dip into the negatives and respects the wallet and battery limits.
+
+### Surplus
+
+Here's a refactored version of the `add_to_wallet` function. This implementation calculates and adds only the surplus energy to the wallet after accounting for the consumed energy.
+
+```gdscript
+func add_to_wallet():
+    # Calculate the amount of energy that can be sold as surplus
+    var surplus_energy = max(battery_percentage - 250.0, 0)
+    var earned_credits = int(surplus_energy * rand_range(0.2, 0.4)) # Convert surplus energy to credits
+    battery_percentage = 250.0 # Set battery to the minimum threshold for consumption
+    wallet += earned_credits
+    # Ensure wallet does not exceed the limit
+    if wallet > 1000:
+        wallet = 1000
+```
+
+#### Changes and Additions
+
+1. **Surplus Energy Calculation**:
+
+   - The `surplus_energy` variable is calculated by subtracting 250.0 (the consumption threshold) from the current `battery_percentage`.
+   - The `max` function ensures that `surplus_energy` is non-negative, preventing negative values.
+
+2. **Credits Calculation**:
+
+   - `earned_credits` is calculated by converting `surplus_energy` into credits using a factor between 0.2 and 0.4. This simulates the variability in the conversion rate.
+
+3. **Battery Level Adjustment**:
+   - After calculating the surplus energy, the `battery_percentage` is set to 250.0, ensuring that power generation remains true while keeping the battery at the consumption threshold.
+
+This implementation maintains the power generation process while only adding the surplus energy to the wallet. The wallet's balance is capped at 1000 credits, ensuring the variable's integrity.
