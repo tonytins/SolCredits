@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://deer2b0fto4ol"]
+[gd_scene load_steps=11 format=3 uid="uid://deer2b0fto4ol"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_v46e6"]
 [ext_resource type="Texture2D" uid="uid://c842mkd8yygj5" path="res://sprites/background/backgroundColorGrass.png" id="2_0hyoa"]
+[ext_resource type="Texture2D" uid="uid://d2nk2rxncq3pv" path="res://sprites/currency/coinGold.png" id="2_2bbhm"]
 [ext_resource type="Texture2D" uid="uid://kvq6a4v6abbr" path="res://sprites/background/house1.png" id="3_io140"]
 [ext_resource type="Texture2D" uid="uid://c027c8vvchgli" path="res://sprites/planets/planet03.png" id="4_pc6mt"]
 [ext_resource type="Texture2D" uid="uid://crmw5mba74epd" path="res://sprites/planets/parts/noise24.png" id="5_ry41q"]
@@ -661,7 +662,7 @@ metadata/_edit_lock_ = true
 
 [node name="SubViewport" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="SubViewport"]
+[node name="UI" type="Control" parent="SubViewport"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -671,7 +672,7 @@ grow_vertical = 2
 script = ExtResource("1_v46e6")
 metadata/_edit_lock_ = true
 
-[node name="MenuBar" type="Panel" parent="SubViewport/Control"]
+[node name="MenuBar" type="Panel" parent="SubViewport/UI"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -681,33 +682,28 @@ offset_bottom = 39.0
 grow_horizontal = 2
 metadata/_edit_lock_ = true
 
-[node name="Wallet" type="HBoxContainer" parent="SubViewport/Control/MenuBar"]
+[node name="Wallet" type="HBoxContainer" parent="SubViewport/UI/MenuBar"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 1002.0
+offset_left = 1050.0
+offset_right = -30.0
 offset_bottom = 40.0
 grow_horizontal = 2
 alignment = 1
-metadata/_edit_lock_ = true
 
-[node name="WalletCur" type="Label" parent="SubViewport/Control/MenuBar/Wallet"]
+[node name="WalletCur" type="TextureRect" parent="SubViewport/UI/MenuBar/Wallet"]
 layout_mode = 2
-text = "Ȼ"
-vertical_alignment = 2
+texture = ExtResource("2_2bbhm")
+expand_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="WalletVal" type="Label" parent="SubViewport/Control/MenuBar/Wallet"]
+[node name="WalletVal" type="Label" parent="SubViewport/UI/MenuBar/Wallet"]
 layout_mode = 2
 text = "0"
 metadata/_edit_lock_ = true
 
-[node name="WalletTxt" type="Label" parent="SubViewport/Control/MenuBar/Wallet"]
-layout_mode = 2
-text = "Wallet"
-metadata/_edit_lock_ = true
-
-[node name="BatteryCap" type="HBoxContainer" parent="SubViewport/Control/MenuBar"]
+[node name="BatteryCap" type="HBoxContainer" parent="SubViewport/UI/MenuBar"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -718,23 +714,23 @@ grow_horizontal = 2
 alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="BatCapPer" type="Label" parent="SubViewport/Control/MenuBar/BatteryCap"]
+[node name="BatCapPer" type="Label" parent="SubViewport/UI/MenuBar/BatteryCap"]
 layout_mode = 2
 text = "%"
 vertical_alignment = 2
 metadata/_edit_lock_ = true
 
-[node name="BatCapVal" type="Label" parent="SubViewport/Control/MenuBar/BatteryCap"]
+[node name="BatCapVal" type="Label" parent="SubViewport/UI/MenuBar/BatteryCap"]
 layout_mode = 2
 text = "0"
 metadata/_edit_lock_ = true
 
-[node name="BatCapTxt" type="Label" parent="SubViewport/Control/MenuBar/BatteryCap"]
+[node name="BatCapTxt" type="Label" parent="SubViewport/UI/MenuBar/BatteryCap"]
 layout_mode = 2
 text = "Capacity"
 metadata/_edit_lock_ = true
 
-[node name="BatteryBar" type="ProgressBar" parent="SubViewport/Control/MenuBar"]
+[node name="BatteryBar" type="ProgressBar" parent="SubViewport/UI/MenuBar"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -748,7 +744,7 @@ max_value = 500.0
 step = 2.08165e-12
 rounded = true
 
-[node name="Label" type="Label" parent="SubViewport/Control/MenuBar"]
+[node name="Label" type="Label" parent="SubViewport/UI/MenuBar"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -760,10 +756,11 @@ offset_bottom = 32.0
 grow_horizontal = 2
 text = "Battery"
 
-[node name="WelcomeDlg" type="AcceptDialog" parent="SubViewport/Control"]
+[node name="WelcomeDlg" type="AcceptDialog" parent="SubViewport/UI"]
 title = "Welcome!"
 initial_position = 1
 size = Vector2i(437, 184)
+visible = true
 dialog_text = "Welcome to Solar Credits! Here, your home is your own personal solar farm. Surplus energy is automatically returned to the grid in exchange for Credits. That money can then be spent in the marketplace."
 dialog_autowrap = true
 
