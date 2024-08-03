@@ -110,6 +110,14 @@ offset_bottom = 32.0
 grow_horizontal = 2
 text = "Battery"
 
+[node name="WelcomeDlg" type="AcceptDialog" parent="SubViewport/Control"]
+title = "Welcome!"
+initial_position = 1
+size = Vector2i(437, 184)
+visible = true
+dialog_text = "Welcome to Solar Credits! Here, your home is your own personal solar farm. Surplus energy is automatically returned to the grid in exchange for Credits. That money can then be spent in the marketplace."
+dialog_autowrap = true
+
 [node name="Node2D" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 

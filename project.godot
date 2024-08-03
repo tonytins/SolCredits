@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [display]
 
 window/stretch/mode="viewport"
-mouse_cursor/custom_image="res://sprites/pointer_toon_b.png"
 
 [rendering]
 

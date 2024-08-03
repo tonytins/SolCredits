@@ -17,7 +17,7 @@ func _process(delta):
 	else:
 		consume_energy(delta)
 	check_wallet()
-	print_status()
+	display_status()
 
 func generate_energy(delta):
 	if battery_percentage < capacity:
@@ -53,7 +53,7 @@ func check_wallet():
 	if wallet > 1000:
 		wallet = 1000
 
-func print_status():
+func display_status():
 	wallet_ui_val.text = str(wallet)
 	battery_ui_bar.value = battery_percentage
 	capacity_ui_val.text = str(capacity)
