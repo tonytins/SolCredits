@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://deer2b0fto4ol"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_jnwp4"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jnwp4")
+metadata/_edit_lock_ = true
+
+[node name="Wallet" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.556424
+anchor_top = 0.274691
+anchor_right = 0.663194
+anchor_bottom = 0.337963
+offset_left = -1.52588e-05
+offset_right = -2.28882e-05
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="WalletCur" type="Label" parent="Wallet"]
+layout_mode = 2
+text = "Ȼ"
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="WalletVal" type="Label" parent="Wallet"]
+layout_mode = 2
+text = "0"
+metadata/_edit_lock_ = true
+
+[node name="WalletTxt" type="Label" parent="Wallet"]
+layout_mode = 2
+text = "Wallet"
+metadata/_edit_lock_ = true
+
+[node name="BatteryBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 182.0
+offset_right = 631.0
+offset_bottom = 218.0
+max_value = 500.0
+step = 2.08165e-12
+rounded = true
