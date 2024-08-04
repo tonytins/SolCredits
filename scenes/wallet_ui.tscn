@@ -110,4 +110,4 @@ metadata/_edit_lock_ = true
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
 title = "Credits"
-visible = true
+position = Vector2i(0, 36)

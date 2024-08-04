@@ -696,6 +696,7 @@ texture = ExtResource("7_55pye")
 [node name="DayNight" type="CanvasModulate" parent="."]
 script = ExtResource("2_fork0")
 gradient = ExtResource("3_8f35k")
+INGAME_SPEED = 20
 
 [node name="Controls" type="CanvasLayer" parent="."]
 
