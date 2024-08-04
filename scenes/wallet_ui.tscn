@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3 uid="uid://buc6tw7ijcf61"]
+
+[ext_resource type="Script" path="res://scripts/wallet.gd" id="1_xtiks"]
+[ext_resource type="Texture2D" uid="uid://d2nk2rxncq3pv" path="res://sprites/currency/coinGold.png" id="2_xa8te"]
+[ext_resource type="StyleBox" uid="uid://3cf73ynenbl8" path="res://charging_color.tres" id="3_b6v7u"]
+
+[node name="WalletUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xtiks")
+metadata/_edit_lock_ = true
+
+[node name="MenuBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -16.0
+offset_right = 23.0
+offset_bottom = 39.0
+grow_horizontal = 2
+metadata/_edit_lock_ = true
+
+[node name="Wallet" type="HBoxContainer" parent="MenuBar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1050.0
+offset_right = -30.0
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="WalletCur" type="TextureRect" parent="MenuBar/Wallet"]
+layout_mode = 2
+texture = ExtResource("2_xa8te")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="WalletVal" type="Label" parent="MenuBar/Wallet"]
+layout_mode = 2
+text = "0"
+metadata/_edit_lock_ = true
+
+[node name="BatteryCap" type="HBoxContainer" parent="MenuBar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 876.0
+offset_right = -126.0
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="BatCapPer" type="Label" parent="MenuBar/BatteryCap"]
+layout_mode = 2
+text = "%"
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="BatCapVal" type="Label" parent="MenuBar/BatteryCap"]
+layout_mode = 2
+text = "0"
+metadata/_edit_lock_ = true
+
+[node name="BatCapTxt" type="Label" parent="MenuBar/BatteryCap"]
+layout_mode = 2
+text = "Capacity"
+metadata/_edit_lock_ = true
+
+[node name="BatteryBar" type="ProgressBar" parent="MenuBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.379933
+anchor_top = 0.179487
+anchor_right = 0.552897
+anchor_bottom = 0.871795
+offset_left = 1.04308e-05
+offset_right = -1.50204e-05
+grow_horizontal = 2
+theme_override_styles/fill = ExtResource("3_b6v7u")
+max_value = 500.0
+step = 2.08165e-12
+rounded = true
+
+[node name="Clock" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0121528
+anchor_top = 0.00308642
+anchor_right = 0.0616319
+anchor_bottom = 0.0648148
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TimeVal" type="Label" parent="Clock"]
+layout_mode = 2
+text = "00:00"

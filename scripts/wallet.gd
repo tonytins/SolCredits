@@ -1,10 +1,12 @@
 extends Control
 
+
+@export var night_hour = 18
+@export var day_hour = 5
 @export var max_funds: float = 1000
 @export var starting_funds: float = 168
 ## Starting battery capacity
 @export var battery_capacity: float = 500
-@export var budget_minimum: float = 300
 ## How low the battery gets before resuming production
 @export var consumption_threshold: float = 50
 
@@ -13,16 +15,17 @@ extends Control
 @onready var battery_capacity_ui_val = $MenuBar/BatteryCap/BatCapVal
 @onready var clock = $Clock/TimeVal
 
+@onready var charging_color = preload("res://charging_color.tres")
+@onready var consuming_color = preload("res://consuming_color.tres")
+
 var battery_percentage: float = 0
 var wallet: float = starting_funds
 var energy_variability: float = 0
-
 var get_clock_hour: float
 var get_minute: float
 var get_am_pm: String
-
 var is_generating_energy: bool = true
-var is_daytime: bool = true
+var killwatt_hour = battery_capacity / 1000
 
 ## Ensure the wallet does not exceed the limit
 var is_wallet_full:
@@ -32,14 +35,20 @@ var is_wallet_full:
 func _ready():
 	randomize()
 	
+func _is_day_time():
+	if get_clock_hour <= day_hour or get_clock_hour >= night_hour:
+		is_generating_energy = true
+	else:
+		is_generating_energy = false
+	
 func _process(delta):
-	if is_daytime:
-		if is_generating_energy:
-			energy_variability = randf_range(0.2, 0.4)
-			generate_energy(delta)
-		else:
-			consume_energy(delta)
-
+	energy_variability = randf_range(0.2, 0.4)
+	if is_generating_energy:
+		generate_energy(delta)
+	else:
+		consume_energy(delta)
+		
+	_is_day_time()
 	update_status()
 
 func set_daytime(day: int, hour: int, minute: int) -> void:
@@ -63,16 +72,15 @@ func _set_minute(minute:int) -> String:
 func _set_am_pm(hour:int) -> String:
 	if hour < 12:
 		return "am"
-		is_daytime = false
 	else:
-		is_daytime = true
 		return "pm"
 
 ## Generate and store energy 
 ## until battery reaches battery_capacity
 func generate_energy(delta):
+	battery_ui_bar.add_theme_stylebox_override("fill", charging_color)
 	if battery_percentage < battery_capacity:
-		battery_percentage += sin(energy_variability / PI / 2)
+		battery_percentage += sin(killwatt_hour / energy_variability / PI / 2)
 		if battery_percentage >= battery_capacity:
 			battery_percentage = battery_capacity
 			is_generating_energy = false
@@ -82,7 +90,8 @@ func generate_energy(delta):
 
 ## Battery consumes eneregy until
 func consume_energy(delta):
-	battery_percentage -= sin(energy_variability / PI / 2)
+	battery_ui_bar.add_theme_stylebox_override("fill", consuming_color)
+	battery_percentage -= sin(killwatt_hour / energy_variability / PI / 2)
 	if battery_percentage <= consumption_threshold:
 		battery_percentage = consumption_threshold
 		is_generating_energy = true
@@ -91,7 +100,7 @@ func add_to_wallet():
 	# Ensure wallet does not exceed the limit
 	if !is_wallet_full:
 		# Calculate the amount of energy that can be sold as surplus
-		var surplus_energy = max(battery_percentage - (consumption_threshold / battery_capacity), 0)
+		var surplus_energy = max(consumption_threshold / killwatt_hour, 0)
 		# Convert surplus energy to credits
 		var earned_credits = int(surplus_energy * energy_variability)
 		wallet += earned_credits
