@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/wallet.gd" id="1_xtiks"]
 [ext_resource type="Texture2D" uid="uid://d2nk2rxncq3pv" path="res://sprites/currency/coinGold.png" id="2_xa8te"]
-[ext_resource type="StyleBox" uid="uid://3cf73ynenbl8" path="res://charging_color.tres" id="3_b6v7u"]
+[ext_resource type="StyleBox" uid="uid://3cf73ynenbl8" path="res://charging_indictor.tres" id="3_tkwyr"]
 
 [node name="WalletUI" type="Control"]
 layout_mode = 3
@@ -20,19 +20,20 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_left = -16.0
 offset_right = 23.0
-offset_bottom = 39.0
+offset_bottom = 50.0
 grow_horizontal = 2
-metadata/_edit_lock_ = true
 
 [node name="Wallet" type="HBoxContainer" parent="MenuBar"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 1050.0
-offset_right = -30.0
-offset_bottom = 40.0
+anchors_preset = -1
+anchor_left = 0.879093
+anchor_top = 0.12
+anchor_right = 0.972292
+anchor_bottom = 0.92
+offset_left = 3.3617e-05
 grow_horizontal = 2
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="WalletCur" type="TextureRect" parent="MenuBar/Wallet"]
 layout_mode = 2
@@ -47,14 +48,15 @@ metadata/_edit_lock_ = true
 
 [node name="BatteryCap" type="HBoxContainer" parent="MenuBar"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 876.0
-offset_right = -126.0
-offset_bottom = 40.0
+anchors_preset = -1
+anchor_left = 0.735516
+anchor_top = 0.08
+anchor_right = 0.894207
+anchor_bottom = 0.88
+offset_right = 3.00407e-05
 grow_horizontal = 2
 alignment = 1
-metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
 [node name="BatCapPer" type="Label" parent="MenuBar/BatteryCap"]
 layout_mode = 2
@@ -75,28 +77,37 @@ metadata/_edit_lock_ = true
 [node name="BatteryBar" type="ProgressBar" parent="MenuBar"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.379933
-anchor_top = 0.179487
-anchor_right = 0.552897
-anchor_bottom = 0.871795
-offset_left = 1.04308e-05
-offset_right = -1.50204e-05
+anchor_left = 0.380353
+anchor_top = 0.2
+anchor_right = 0.553317
+anchor_bottom = 0.78
 grow_horizontal = 2
-theme_override_styles/fill = ExtResource("3_b6v7u")
+theme_override_styles/fill = ExtResource("3_tkwyr")
 max_value = 500.0
 step = 2.08165e-12
 rounded = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Clock" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0121528
-anchor_top = 0.00308642
-anchor_right = 0.0616319
-anchor_bottom = 0.0648148
+anchor_left = 0.0182292
+anchor_top = 0.00771605
+anchor_right = 0.0798611
+anchor_bottom = 0.0694444
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="TimeVal" type="Label" parent="Clock"]
 layout_mode = 2
 text = "00:00"
+metadata/_edit_lock_ = true
+
+[node name="AmPmVal" type="Label" parent="Clock"]
+layout_mode = 2
+text = "pm"
+metadata/_edit_lock_ = true
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+title = "Credits"
+visible = true
