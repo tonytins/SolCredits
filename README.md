@@ -9,7 +9,7 @@ Made in Godot 4.x and inspired by Stellaris, Solar Credits explores the concept 
 - [x] Day-night cycle
   - [x] Slow down charging speed
 - [ ] Marketplace
-- [ ] 3D enviroment
+- [ ] 3D environment
 
 ## Surplus of Potential
 
