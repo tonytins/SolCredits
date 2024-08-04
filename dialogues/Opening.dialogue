@@ -1,0 +1,41 @@
+~ start
+Max: So, you're finally thinking about adding solar panels, huh? 
+	Trust me, it's not just a good move for the environment. 
+	It’s a great way to make some extra money. You can earn "Credits" 
+	when you sell surplus energy back to the grid.
+- Credits?
+	You: Sounds like a good deal. But how does it work? 
+		And what about the "Credits"?
+		
+	=> newbie
+- Oh, yeah! I remember.
+	You: Oh, yeah! I remember.
+		I get rewarded extra for the surplus.
+		
+	=> final
+
+~ newbie
+Max: It's pretty simple. When your solar panels produce more energy than you use,
+	that extra power gets sent back to the grid. In return, you earn Credits.
+	It's not like those other "chained" technologies that consume energy. 
+
+Max: Here, you're actually making it! You can use those Credits to buy things
+	or invest in upgrading your setup with more panels or batteries. 
+	It's all about managing your consumption and 
+	understanding the grid's fluctuations—supply and demand, you know?
+
+You: So, it’s like a game of balancing what we use and what we produce?
+
+=> final
+
+~ final
+Max: Exactly! And hey, it might even cover some of your expensive hobbies.
+	Just keep an eye on the grid's mood; one day, demand might skyrocket, and the next, 
+	it could plummet. But that's part of the fun, right?
+
+You: Yeah, sounds like it. Thanks for the heads-up, Max.
+
+Max: No problem! Welcome to the world of renewable energy. 
+	Let's see how much we can save—and maybe even earn—together.
+
+=> END

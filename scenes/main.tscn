@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://deer2b0fto4ol"]
+[gd_scene load_steps=12 format=3 uid="uid://deer2b0fto4ol"]
 
-[ext_resource type="Script" path="res://scripts/Main.gd" id="1_v46e6"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_msyq3"]
+[ext_resource type="Script" path="res://scripts/gui.gd" id="1_v46e6"]
 [ext_resource type="Texture2D" uid="uid://c842mkd8yygj5" path="res://sprites/background/backgroundColorGrass.png" id="2_0hyoa"]
 [ext_resource type="Texture2D" uid="uid://d2nk2rxncq3pv" path="res://sprites/currency/coinGold.png" id="2_2bbhm"]
 [ext_resource type="Texture2D" uid="uid://kvq6a4v6abbr" path="res://sprites/background/house1.png" id="3_io140"]
@@ -658,7 +659,7 @@ texture = ExtResource("6_r7ks4")
 sources/0 = SubResource("TileSetAtlasSource_skc8y")
 
 [node name="Main" type="Node2D"]
-metadata/_edit_lock_ = true
+script = ExtResource("1_msyq3")
 
 [node name="SubViewport" type="CanvasLayer" parent="."]
 
@@ -755,14 +756,6 @@ offset_right = -65.0
 offset_bottom = 32.0
 grow_horizontal = 2
 text = "Battery"
-
-[node name="WelcomeDlg" type="AcceptDialog" parent="SubViewport/UI"]
-title = "Welcome!"
-initial_position = 1
-size = Vector2i(437, 184)
-visible = true
-dialog_text = "Welcome to Solar Credits! Here, your home is your own personal solar farm. Surplus energy is automatically returned to the grid in exchange for Credits. That money can then be spent in the marketplace."
-dialog_autowrap = true
 
 [node name="Node2D" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
